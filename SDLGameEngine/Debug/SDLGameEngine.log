@@ -1,0 +1,7 @@
+﻿  DynamicSteeringDemo.cpp
+d:\sdlprojects\sdlgameengine\sdlgameengine\dynamicsteeringdemo.cpp(29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  MoveInCircle.cpp
+d:\sdlprojects\sdlgameengine\sdlgameengine\moveincircle.cpp(26): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  TestDemo.cpp
+  Generating Code...
+  SDLGameEngine.vcxproj -> D:\sdlProjects\SDLGameEngine\Debug\SDLGameEngine.exe

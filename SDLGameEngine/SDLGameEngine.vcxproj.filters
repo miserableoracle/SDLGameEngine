@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{ec8eb86f-5ce5-43a4-92fc-f0a4d74db8f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Header Files">
+      <UniqueIdentifier>{17beed24-2c1a-4062-b1d8-189e2ca5a3fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source Files">
+      <UniqueIdentifier>{8e02f5c6-f857-4df1-8c0a-cf6697825f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestDemo">
+      <UniqueIdentifier>{0836e939-3d55-4fb7-abee-8c30763c4835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KinematicDemo">
+      <UniqueIdentifier>{548dc4a3-5fce-4828-a864-3040b8261ec6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicSteeringDemo">
+      <UniqueIdentifier>{1f968b57-dd0c-4257-8b1a-eccb51d4c728}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Behaviour.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestDemo.cpp">
+      <Filter>TestDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveInCircle.cpp">
+      <Filter>TestDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicAgent.cpp">
+      <Filter>KinematicDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicDemo.cpp">
+      <Filter>KinematicDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSeek.cpp">
+      <Filter>KinematicDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSteeringBehaviour.cpp">
+      <Filter>KinematicDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateTarget.cpp">
+      <Filter>KinematicDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicSteeringDemo.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringAgent.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviour.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateVectorTarget.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="Flee.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="Arrive.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="Align.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="Pursue.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestDemo.h">
+      <Filter>TestDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveInCircle.h">
+      <Filter>TestDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicAgent.h">
+      <Filter>KinematicDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicDemo.h">
+      <Filter>KinematicDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSeek.h">
+      <Filter>KinematicDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSteeringBehaviour.h">
+      <Filter>KinematicDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateTarget.h">
+      <Filter>KinematicDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicSteeringDemo.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringAgent.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviour.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateVectorTarget.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Flee.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrive.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Align.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Pursue.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
