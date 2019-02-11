@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Time.h"
+#include "Camera.h"
 
 
 UpdateVectorTarget::UpdateVectorTarget()
@@ -24,8 +25,8 @@ void UpdateVectorTarget::Update()
 	timer += Time::DeltaTime();
 	if ((gameObject->transform->position - *target).Length() <= 10 || timer > maxTime)
 	{
-		target->x = rand() % 1280;
-		target->y = rand() % 720;
+		target->x = Camera::x + rand() % Camera::width;
+		target->y = Camera::y + rand() % Camera::height;
 		targetObject->transform->position = *target;
 		timer = 0;
 	}

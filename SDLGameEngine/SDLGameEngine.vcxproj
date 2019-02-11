@@ -137,6 +137,7 @@
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraFollow.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DynamicSteeringDemo.cpp" />
     <ClCompile Include="Flee.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="Pursue.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Seek.cpp" />
+    <ClCompile Include="Shoot.cpp" />
     <ClCompile Include="Shooter.cpp" />
     <ClCompile Include="SteeringAgent.cpp" />
     <ClCompile Include="SteeringBehaviour.cpp" />
@@ -172,6 +174,7 @@
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraFollow.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DynamicSteeringDemo.h" />
     <ClInclude Include="Flee.h" />
@@ -189,6 +192,7 @@
     <ClInclude Include="Pursue.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Seek.h" />
+    <ClInclude Include="Shoot.h" />
     <ClInclude Include="Shooter.h" />
     <ClInclude Include="SteeringAgent.h" />
     <ClInclude Include="SteeringBehaviour.h" />

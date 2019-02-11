@@ -127,6 +127,12 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Shooter</Filter>
     </ClCompile>
+    <ClCompile Include="Shoot.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraFollow.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behaviour.h">
@@ -223,6 +229,12 @@
       <Filter>Engine\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shoot.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraFollow.h">
       <Filter>Shooter</Filter>
     </ClInclude>
   </ItemGroup>
