@@ -17,7 +17,6 @@ Flee::~Flee()
 
 void Flee::Update()
 {
-	SteeringBehaviour::Update();
 
 	// Get direction from target
 	steering.linear = gameObject->transform->position - target->position;
@@ -28,4 +27,6 @@ void Flee::Update()
 
 	// Output steering
 	steering.angular = 0;
+	SteeringBehaviour::Update();
+
 }

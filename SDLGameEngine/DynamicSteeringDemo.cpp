@@ -7,6 +7,8 @@
 #include "Pursue.h"
 #include "UpdateVectorTarget.h"
 #include "MoveInCircle.h"
+#include "Time.h"
+#include "PathFollowing.h"
 
 
 DynamicSteeringDemo::DynamicSteeringDemo()
@@ -26,7 +28,7 @@ void DynamicSteeringDemo::Awake()
 
 void DynamicSteeringDemo::Setup()
 {
-	GameObject* go = CreateGameObject("Tank", screenWidth / 2, screenHeight / 2, 0);
+	GameObject* go = CreateGameObject("Tank", 300, 200, 0);
 	go->AddComponent(new Renderer(go, "Assets/Tank.png"));
 	go->transform->scale.x = 0.1f;
 	go->transform->scale.y = 0.1f;
@@ -61,12 +63,28 @@ void DynamicSteeringDemo::Setup()
 	pursue->maxAccelaraction = 5;
 	go->AddComponent(pursue);
 
+	PathFollowing* pathFollowing = new PathFollowing(go);
+	pathFollowing->target = tgt->transform;;
+	pathFollowing->maxAccelaraction = 1;
+	//go->AddComponent(pathFollowing);
+	pathFollowing->waypoints.push_back(Vector2(50, 50));
+	pathFollowing->waypoints.push_back(Vector2(100, 700));
+	pathFollowing->waypoints.push_back(Vector2(200, 100));
+	pathFollowing->waypoints.push_back(Vector2(350, 500));
+	pathFollowing->waypoints.push_back(Vector2(450, 150));
+	pathFollowing->waypoints.push_back(Vector2(600, 600));
+	pathFollowing->waypoints.push_back(Vector2(750, 50));
+	pathFollowing->waypoints.push_back(Vector2(900, 550));
+	pathFollowing->waypoints.push_back(Vector2(1000, 100));
+	pathFollowing->waypoints.push_back(Vector2(1150, 500));
+
 	SteeringAgent* agent = new SteeringAgent(go);
 	//agent->steerings.push_back(seek);
 	//agent->steerings.push_back(flee);
 	//agent->steerings.push_back(arrive);
 	//agent->steerings.push_back(align);
 	agent->steerings.push_back(pursue);
+	//agent->steerings.push_back(pathFollowing);
 	agent->maxSpeed = 200;
 	agent->velocity.y = -100;
 	go->AddComponent(agent);
@@ -76,12 +94,17 @@ void DynamicSteeringDemo::Setup()
 	//arrive->agent = agent;
 	//align->agent = agent;
 	pursue->agent = agent;
+	//pathFollowing->agent = agent;
 
-	UpdateVectorTarget* updateTarget = new UpdateVectorTarget(go);
+	/*UpdateVectorTarget* updateTarget = new UpdateVectorTarget(go);
 	updateTarget->target = &tgt->transform->position;
 	updateTarget->maxTime = 20;
 	go->AddComponent(updateTarget);
-
 	
-	updateTarget->targetObject = tgt;
+	updateTarget->targetObject = tgt;*/
+
+	//Time::timeScale = 0.3F;
+
+	/*Texture* TEXT = new Texture();
+	TEXT->loadFromRenderedText("xyz", { 1, 0, 0 }, TTF_OpenFont("Assets/lazy.ttf", 28));*/
 }

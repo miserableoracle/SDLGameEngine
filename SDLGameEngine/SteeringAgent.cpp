@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Game.h"
+#include "Time.h"
 
 
 SteeringAgent::SteeringAgent()
@@ -16,6 +17,7 @@ SteeringAgent::~SteeringAgent()
 {
 }
 
+
 void SteeringAgent::Update()
 {
 	for (SteeringBehaviour* steering : steerings)
@@ -29,10 +31,11 @@ void SteeringAgent::Update()
 		velocity *= maxSpeed;
 	}
 
-	gameObject->transform->position += velocity / 60.0f;
+	gameObject->transform->position += velocity * Time::DeltaTime();
 	//gameObject->transform->angle += (angularSpeed / 60.0f) * 180.0f / M_PI;
 	gameObject->transform->angle = atan2(velocity.y, velocity.x) * 180.0f / M_PI + 90.0f;
 
 	SDL_SetRenderDrawColor(Game::gRenderer, 0x00, 0xFF, 0x00, 0xFF);
 	SDL_RenderDrawLine(Game::gRenderer, gameObject->transform->position.x, gameObject->transform->position.y, gameObject->transform->position.x + velocity.x, gameObject->transform->position.y + velocity.y);
+	Behaviour::Update();
 }

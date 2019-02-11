@@ -2,10 +2,15 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <map>
 #include "GameObject.h"
 #include "Input.h"
 #include "Transform.h"
 #include "Renderer.h"
+#include "Camera.h"
+
+typedef GameObject* (*prefab)(Game* game);
+
 class Game
 {
 public:
@@ -23,9 +28,20 @@ public:
 	static SDL_Renderer* gRenderer;
 
 	GameObject* CreateGameObject(std::string name = "", float x = 0, float y = 0, float angle = 0);
+	GameObject* Instantiate(std::string name = "", const float& x = 0, const float& y = 0, const float& angle = 0);
+	GameObject* Instantiate(GameObject* go, const float& x = 0, const float& y = 0, const float& angle = 0);
+	GameObject* Instantiate(std::string name = "", const Vector2& position = Vector2(0, 0), const float& angle = 0);
+	GameObject* Instantiate(GameObject* go, const Vector2& position = Vector2(0, 0), const float& angle = 0);
+
+	void Destroy(GameObject* go);
 
 	static int screenWidth;
 	static int screenHeight;
+
+	std::map<std::string, prefab> prefabs;
+	GameObject* Prefab(std::string name);
+
+	static bool quit;
 
 protected:
 
@@ -33,5 +49,7 @@ protected:
 	
 	std::list<GameObject*> gameObjects;
 	std::list<Module*> modules;
+
+	std::list<GameObject*> objectsToDestroy;
 };
 

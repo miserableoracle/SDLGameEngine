@@ -1,5 +1,6 @@
 #include "Pursue.h"
 #include "SteeringAgent.h"
+#include "Time.h"
 
 
 Pursue::Pursue()
@@ -21,7 +22,6 @@ void Pursue::Start()
 
 void Pursue::Update()
 {
-	SteeringBehaviour::Update();
 
 	Vector2 direction = target->position - gameObject->transform->position;
 	float distance = direction.Length();
@@ -38,7 +38,7 @@ void Pursue::Update()
 		prediction = distance / speed;
 	}
 
-	Vector2 targetVel = (target->position - lastTragetPosition) * 60.0f;
+	Vector2 targetVel = (target->position - lastTragetPosition) * Time::DeltaTime();
 	// Get direction to target
 	steering.linear = target->position + targetVel * prediction - gameObject->transform->position;
 
@@ -48,5 +48,7 @@ void Pursue::Update()
 
 	// Output steering
 	steering.angular = 0;
-	lastTragetPosition = target->position;
+	lastTragetPosition = target->position;	
+	SteeringBehaviour::Update();
+
 }

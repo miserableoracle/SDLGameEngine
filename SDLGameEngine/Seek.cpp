@@ -16,7 +16,6 @@ Seek::~Seek()
 
 void Seek::Update()
 {
-	SteeringBehaviour::Update();
 	// Get direction to target
 	steering.linear = target->position - gameObject->transform->position;
 
@@ -26,4 +25,6 @@ void Seek::Update()
 
 	// Output steering
 	steering.angular = 0;
+	SteeringBehaviour::Update();
+
 }

@@ -9,6 +9,12 @@ GameObject::GameObject()
 	AddComponent((Component*)transform);
 }
 
+GameObject::GameObject(const GameObject &gameObject)
+{
+	transform = new Transform(0, 0);
+	AddComponent((Component*)transform);
+}
+
 GameObject::GameObject(Game* _game, std::string _name, float x, float y, float angle, float xScale, float yScale)
 {
 	name = _name;
@@ -19,10 +25,17 @@ GameObject::GameObject(Game* _game, std::string _name, float x, float y, float a
 
 GameObject::~GameObject()
 {
+	for (Component* component : components)
+	{
+		delete component;
+	}
+
 }
 
 void GameObject::AddComponent(Component* component)
 {
+	component->gameObject = this;
+	component->game = game;
 	components.push_back(component);
 }
 
@@ -30,7 +43,7 @@ void GameObject::Start()
 {
 	for (Component* component : components)
 	{
-		component->Start();
+		component->Awake();
 	}
 }
 
@@ -38,7 +51,10 @@ void GameObject::Update()
 {
 	for (Component* component : components)
 	{
-		component->Update();
+		if (component->enabled)
+		{
+			component->OnUpdate();
+		}
 	}
 }
 

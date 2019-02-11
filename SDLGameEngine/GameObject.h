@@ -10,6 +10,7 @@ class GameObject
 public:
 	GameObject();
 	GameObject(Game* _game, std::string name = "", float x = 0, float y = 0, float _angle = 0, float xScale = 1, float yScale = 1);
+	GameObject(const GameObject &gameObject);
 	~GameObject();
 	void AddComponent(Component* component);
 	template<class T> T* GetComponent();
@@ -21,24 +22,23 @@ public:
 	void Cleanup();
 	std::string name;
 	Transform* transform;
+	inline void SetActive(bool toggle) { active = toggle; }
+	inline bool isActive() { return active; }
 
 private:
 	std::list<Component*> components;
 	Game* game;
+	bool active = true;
 };
 
 template<class T> T* GameObject::GetComponent()
 {
 	for (Component* component : components)
 	{
-		try
+		T* found = dynamic_cast<T*>(component);
+		if (found != NULL)
 		{
-			T* found = (T*)component;
 			return found;
-		}
-		catch (const std::exception&)
-		{
-
 		}
 	}
 	std::cout << "Component not found";
@@ -49,16 +49,12 @@ template<class T> void GameObject::RemoveComponent()
 {
 	for (Component* component : components)
 	{
-		try
+		Component* found = dynamic_cast<T*>(component);
+		if (found != NULL)
 		{
-			Component* found = (T*)component;
 			components.remove(component);
 			return;
-		}
-		catch (const std::exception&)
-		{
-
-		}
+		}		
 	}
 	std::cout << "Component not found";
 	return;

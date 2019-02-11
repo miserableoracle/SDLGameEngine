@@ -4,6 +4,7 @@
 #include "Vector2.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "Time.h"
 
 
 UpdateVectorTarget::UpdateVectorTarget()
@@ -20,7 +21,7 @@ UpdateVectorTarget::~UpdateVectorTarget()
 
 void UpdateVectorTarget::Update()
 {
-	timer += 1 / 60.0f;
+	timer += Time::DeltaTime();
 	if ((gameObject->transform->position - *target).Length() <= 10 || timer > maxTime)
 	{
 		target->x = rand() % 1280;
@@ -28,4 +29,5 @@ void UpdateVectorTarget::Update()
 		targetObject->transform->position = *target;
 		timer = 0;
 	}
+	Behaviour::Update();
 }

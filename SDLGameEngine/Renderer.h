@@ -10,7 +10,7 @@ public:
 	Renderer();
 	Renderer(GameObject* _gameObject, std::string _filePath, SDL_Rect* _clip = NULL);
 	virtual ~Renderer();
-	void Start();
+	void Awake();
 	void Update();
 
 	std::string filePath;

@@ -1,9 +1,12 @@
 #include "Game.h"
+#include "Input.h"
+#include "Time.h"
 
 SDL_Window* Game::gWindow = NULL;
 SDL_Renderer* Game::gRenderer = NULL;
 int Game::screenWidth = 800;
 int Game::screenHeight = 600;
+bool Game::quit = false;
 
 Game::Game()
 {
@@ -40,7 +43,7 @@ bool Game::Init()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Camera::width, Camera::height, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -58,7 +61,7 @@ bool Game::Init()
 			else
 			{
 				//Initialize renderer color
-				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
 
 				//Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
@@ -67,9 +70,20 @@ bool Game::Init()
 					printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
 					success = false;
 				}
+
+				//Initialize SDL_ttf
+				if (TTF_Init() == -1)
+				{
+					printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
+					success = false;
+				}
 			}
 		}
 	}
+
+	// Initialize modules
+	modules.push_back(new Input());
+	modules.push_back(new Time());
 
 	return success;
 }
@@ -81,26 +95,48 @@ void Game::Setup()
 
 void Game::Start()
 {
-	for (GameObject* g : gameObjects)
-	{
-		g->Start();
-	}
-
 	for (Module* m : modules)
 	{
 		m->Start();
+	}
+
+	for (GameObject* g : gameObjects)
+	{
+		g->Start();
 	}
 }
 
 void Game::Update()
 {
-	SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gRenderer);
+
+
+	/*for (Module* m : modules)
+	{
+		m->Update();
+	}*/
 
 	for (GameObject* g : gameObjects)
 	{
-		g->Update();
+		if (g->isActive())
+		{
+			g->Update();
+		}
+		//for (Module* m : modules)
+		//{
+		//	m->Update();
+		//}
 	}
+
+	for (GameObject* g : objectsToDestroy)
+	{
+		gameObjects.remove(g);
+		delete g;
+	}
+
+	objectsToDestroy.clear();
+
 
 	for (Module* m : modules)
 	{
@@ -109,6 +145,7 @@ void Game::Update()
 
 	//Update screen
 	SDL_RenderPresent(gRenderer);
+	
 }
 
 void Game::End()
@@ -139,4 +176,42 @@ GameObject* Game::CreateGameObject(std::string name, float x, float y, float ang
 	GameObject* go = new GameObject(this, name, x, y, angle);
 	gameObjects.push_back(go);
 	return go;
+}
+
+GameObject* Game::Instantiate(std::string name, const float& x, const float& y, const float& angle)
+{
+	GameObject* go = new GameObject(this, name, x, y, angle);
+	gameObjects.push_back(go);
+	go->Start();
+	return go;
+}
+
+GameObject* Game::Instantiate(GameObject* go, const float& x, const float& y, const float& angle)
+{
+	go->transform->position.x = x;
+	go->transform->position.y = y;
+	go->transform->angle = angle;
+	gameObjects.push_back(go);
+	go->Start();
+	return go;
+}
+
+GameObject* Game::Instantiate(std::string name, const Vector2& position, const float& angle)
+{
+	return Instantiate(name, position.x, position.y, angle);
+}
+
+GameObject* Game::Instantiate(GameObject* go, const Vector2& position, const float& angle)
+{
+	return Instantiate(go, position.x, position.y, angle);
+}
+
+void Game::Destroy(GameObject* go)
+{
+	objectsToDestroy.push_back(go);
+}
+
+GameObject* Game::Prefab(std::string name)
+{
+	return prefabs.find(name)->second(this);
 }

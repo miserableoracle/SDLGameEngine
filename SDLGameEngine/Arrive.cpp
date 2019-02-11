@@ -16,7 +16,6 @@ Arrive::~Arrive()
 
 void Arrive::Update()
 {
-	SteeringBehaviour::Update();
 
 	// Get direction to target
 	Vector2 direction = target->position - gameObject->transform->position;
@@ -58,4 +57,6 @@ void Arrive::Update()
 
 	// Output steering
 	steering.angular = 0;
+	SteeringBehaviour::Update();
+
 }

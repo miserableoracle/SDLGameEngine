@@ -23,6 +23,9 @@
     <Filter Include="DynamicSteeringDemo">
       <UniqueIdentifier>{1f968b57-dd0c-4257-8b1a-eccb51d4c728}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shooter">
+      <UniqueIdentifier>{7b962513-e29b-45d9-9fd6-32177ca3fe15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -106,6 +109,24 @@
     <ClCompile Include="Pursue.cpp">
       <Filter>DynamicSteeringDemo</Filter>
     </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFollowing.cpp">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="Shooter.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerControls.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Engine\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behaviour.h">
@@ -185,6 +206,24 @@
     </ClInclude>
     <ClInclude Include="Pursue.h">
       <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFollowing.h">
+      <Filter>DynamicSteeringDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="Shooter.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControls.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Shooter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

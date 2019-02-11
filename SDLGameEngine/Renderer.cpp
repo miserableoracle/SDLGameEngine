@@ -16,28 +16,33 @@ Renderer::Renderer(GameObject* _gameObject, std::string _filePath, SDL_Rect* _re
 
 Renderer::~Renderer()
 {
+	delete texture;
+	delete clip;
+	delete center;
 }
 
-void Renderer::Start()
+void Renderer::Awake()
 {
 	texture = new Texture();
 	texture->globalRenderer = Game::gRenderer;
 	texture->loadFromFile(filePath);
 
-	center = new Vector2(texture->getWidth() * gameObject->transform->scale.x / 2, texture->getHeight() * gameObject->transform->scale.y / 2);
+	center = new Vector2(texture->getWidth() * gameObject->transform->GetAbsoluteScale().x / 2, texture->getHeight() * gameObject->transform->GetAbsoluteScale().y / 2);
 }
 
 void Renderer::Update()
 {
 	SDL_Point* pivot = new SDL_Point();
-	pivot->x = ceil(center->x);
-	pivot->y = ceil(center->y);
-	int xPos = ceil(gameObject->transform->position.x - texture->getWidth() * gameObject->transform->scale.x / 2);
-	int yPos = ceil(gameObject->transform->position.y - texture->getHeight() * gameObject->transform->scale.y / 2);
+	pivot->x = floor(center->x);
+	pivot->y = floor(center->y);
+	int xPos = ceil(gameObject->transform->GetAbsolutePosition().x - texture->getWidth() * gameObject->transform->GetAbsoluteScale().x / 2);
+	int yPos = ceil(gameObject->transform->GetAbsolutePosition().y - texture->getHeight() * gameObject->transform->GetAbsoluteScale().y / 2);
+	xPos -= Camera::x;
+	yPos -= Camera::y;
 	SDL_Rect* renderQuad = new SDL_Rect();
-	renderQuad->x = floor(xPos);
-	renderQuad->y = floor(yPos);
-	renderQuad->w = ceil(texture->getWidth() * gameObject->transform->scale.x);
-	renderQuad->h = ceil(texture->getHeight() * gameObject->transform->scale.y);
-	texture->render(xPos, yPos, clip, renderQuad, gameObject->transform->angle, pivot);
+	renderQuad->x = ceil(xPos);
+	renderQuad->y = ceil(yPos);
+	renderQuad->w = ceil(texture->getWidth() * gameObject->transform->GetAbsoluteScale().x);
+	renderQuad->h = ceil(texture->getHeight() * gameObject->transform->GetAbsoluteScale().y);
+	texture->render(xPos, yPos, clip, renderQuad, gameObject->transform->GetAbsoluteAngle(), pivot);
 }

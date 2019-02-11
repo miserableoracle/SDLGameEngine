@@ -7,10 +7,10 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include <string>
 #include <iostream>
-#include "DynamicSteeringDemo.h"
+#include "Shooter.h"
 
 
-Game* game = new DynamicSteeringDemo();
+Game* game = new Shooter();
 
 int main( int argc, char* args[] )
 {
@@ -22,10 +22,11 @@ int main( int argc, char* args[] )
 	}
 	else
 	{
+		
 		game->Setup();
 		game->Start();
-		bool quit = false;
-		while (!quit)
+		
+		while (!Game::quit)
 		{
 			game->Update();
 		}
