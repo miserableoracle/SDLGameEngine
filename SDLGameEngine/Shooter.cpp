@@ -19,9 +19,9 @@ void Shooter::Awake()
 	Camera::height = 600;
 }
 
-GameObject* BulletPrefab(Game* game)
+GameObject* Shooter::BulletPrefab()
 {
-	GameObject* go = new GameObject(game, "bullet");
+	GameObject* go = new GameObject(this, "bullet");
 	go->AddComponent(new Renderer(go, "Assets/Cannon_Ball.png"));
 	go->AddComponent(new Bullet());
 	go->transform->scale.x = 0.1f;
@@ -31,7 +31,10 @@ GameObject* BulletPrefab(Game* game)
 
 void Shooter::Setup()
 {
-	prefabs.insert(std::pair<std::string, prefab>("Bullet", &BulletPrefab));
+	AddPrefab("Bullet", std::bind(&Shooter::BulletPrefab, this));
+
+	GameObject* bg = CreateGameObject("bg", 300, 200, 0);
+	bg->AddComponent(new Renderer(bg, "Assets/bg.png"));
 
 	GameObject* go = CreateGameObject("Tank", 300, 200, 0);
 	//go->AddComponent(new Renderer(go, "Assets/Target.png"));

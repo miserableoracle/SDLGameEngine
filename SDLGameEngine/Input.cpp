@@ -40,13 +40,17 @@ void Input::Update()
 			Game::quit = true;
 
 		case SDL_KEYDOWN:
-			keyDownEvents.push_back(e.key.keysym.sym);
-			keyHoldEvents.push_back(e.key.keysym.sym);
+			if (!Input::GetKey(e.key.keysym.sym))
+			{
+				keyDownEvents.push_back(e.key.keysym.sym);
+				keyHoldEvents.push_back(e.key.keysym.sym);
+			}			
 			break;
 
 		case SDL_KEYUP:
 			keyUpEvents.push_back(e.key.keysym.sym);
 			keyHoldEvents.remove(e.key.keysym.sym);
+			keyDownEvents.remove(e.key.keysym.sym);
 			break;
 
 		default:

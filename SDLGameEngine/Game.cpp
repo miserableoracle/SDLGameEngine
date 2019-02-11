@@ -211,7 +211,12 @@ void Game::Destroy(GameObject* go)
 	objectsToDestroy.push_back(go);
 }
 
+void Game::AddPrefab(std::string name, std::function<GameObject*()> prefabRecipe)
+{
+	prefabs.insert(std::pair<std::string, std::function<GameObject*()>>(name, prefabRecipe));
+}
+
 GameObject* Game::Prefab(std::string name)
 {
-	return prefabs.find(name)->second(this);
+	return prefabs.find(name)->second();
 }

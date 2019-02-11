@@ -10,6 +10,6 @@ public:
 	void Awake();
 	void Setup();
 
-	//GameObject* BulletPrefab();
+	GameObject* BulletPrefab();
 };
 

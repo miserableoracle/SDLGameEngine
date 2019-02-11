@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <functional>
 #include <map>
 #include "GameObject.h"
 #include "Input.h"
@@ -38,7 +39,9 @@ public:
 	static int screenWidth;
 	static int screenHeight;
 
-	std::map<std::string, prefab> prefabs;
+	std::map<std::string, std::function<GameObject*()>> prefabs;
+
+	void AddPrefab(std::string name, std::function<GameObject*()> prefabRecipe);
 	GameObject* Prefab(std::string name);
 
 	static bool quit;
