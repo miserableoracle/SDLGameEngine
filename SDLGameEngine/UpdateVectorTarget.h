@@ -12,7 +12,7 @@ public:
 	void Update();
 
 	float maxTime = 1000;
-	Vector2* target;
+	Vector2 target;
 	GameObject* targetObject;
 
 private:

@@ -7,7 +7,7 @@ public:
 	Bullet();
 	~Bullet();
 
-	float speed = 500;
+	float speed = 1000;
 	float destroyTime = 1;
 	void Update();
 private:

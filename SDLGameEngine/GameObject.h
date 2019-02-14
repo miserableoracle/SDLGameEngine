@@ -5,6 +5,7 @@
 class Component;
 class Transform;
 class Game;
+class Scene;
 class GameObject
 {
 public:
@@ -17,18 +18,22 @@ public:
 	template<class T> void RemoveComponent();
 	/*template<class T> T* GetComponents();
 	template<class T> void RemoveComponents();*/
-	void Start();
+	void Awake();
 	void Update();
 	void Cleanup();
 	std::string name;
 	Transform* transform;
 	inline void SetActive(bool toggle) { active = toggle; }
 	inline bool isActive() { return active; }
+	inline const Scene* const GetScene() { return scene; }
+	inline const Game* const GetGame() { return game; }
 
 private:
 	std::list<Component*> components;
-	Game* game;
+	Game* game = NULL;
+	Scene* scene = NULL;
 	bool active = true;
+	friend class Scene;
 };
 
 template<class T> T* GameObject::GetComponent()

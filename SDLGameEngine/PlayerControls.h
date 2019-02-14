@@ -7,8 +7,8 @@ public:
 	PlayerControls();
 	~PlayerControls();
 
-	float xSpeed = 200;
-	float ySpeed = 200;
+	float xSpeed = 500;
+	float ySpeed = 500;
 
 	virtual void Update();
 };

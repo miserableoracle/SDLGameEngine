@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Scene.h"
 
 
 GameObject::GameObject()
@@ -25,9 +26,14 @@ GameObject::GameObject(Game* _game, std::string _name, float x, float y, float a
 
 GameObject::~GameObject()
 {
+	if (scene != NULL)
+	{
+		scene->ReleaseFromScene(this);
+	}
 	for (Component* component : components)
 	{
 		delete component;
+		component = NULL;
 	}
 
 }
@@ -36,10 +42,11 @@ void GameObject::AddComponent(Component* component)
 {
 	component->gameObject = this;
 	component->game = game;
+	component->scene = scene;
 	components.push_back(component);
 }
 
-void GameObject::Start()
+void GameObject::Awake()
 {
 	for (Component* component : components)
 	{

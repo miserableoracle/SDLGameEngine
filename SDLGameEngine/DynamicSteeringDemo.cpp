@@ -9,6 +9,7 @@
 #include "MoveInCircle.h"
 #include "Time.h"
 #include "PathFollowing.h"
+#include "SpriteRenderer.h"
 
 
 DynamicSteeringDemo::DynamicSteeringDemo()
@@ -29,14 +30,13 @@ void DynamicSteeringDemo::Awake()
 void DynamicSteeringDemo::Setup()
 {
 	GameObject* go = CreateGameObject("Tank", 300, 200, 0);
-	go->AddComponent(new Renderer(go, "Assets/Tank.png"));
-	go->transform->scale.x = 0.1f;
-	go->transform->scale.y = 0.1f;
+	go->AddComponent(new SpriteRenderer("Assets/Tank.png"));
+	go->transform->SetRelativeScale(Vector2(0.1f, 0.1f));
+
 
 	GameObject* tgt = CreateGameObject("Target", 1900, 1000);
-	tgt->AddComponent(new Renderer(tgt, "Assets/Target.png"));
-	tgt->transform->scale.x = 0.1f;
-	tgt->transform->scale.y = 0.1f;
+	tgt->AddComponent(new  SpriteRenderer("Assets/Target.png"));
+	go->transform->SetRelativeScale(Vector2(0.1f, 0.1f));
 	tgt->AddComponent(new MoveInCircle(tgt));
 
 	Seek* seek = new Seek(go);
@@ -96,12 +96,12 @@ void DynamicSteeringDemo::Setup()
 	pursue->agent = agent;
 	//pathFollowing->agent = agent;
 
-	/*UpdateVectorTarget* updateTarget = new UpdateVectorTarget(go);
-	updateTarget->target = &tgt->transform->position;
+	UpdateVectorTarget* updateTarget = new UpdateVectorTarget(go);
+	updateTarget->target = &tgt->transform->GetAbsolutePosition();
 	updateTarget->maxTime = 20;
 	go->AddComponent(updateTarget);
 	
-	updateTarget->targetObject = tgt;*/
+	updateTarget->targetObject = tgt;
 
 	//Time::timeScale = 0.3F;
 

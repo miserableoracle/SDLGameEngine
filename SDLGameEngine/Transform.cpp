@@ -12,52 +12,240 @@ Transform::Transform()
 
 Transform::Transform(GameObject* _gameObject, float x, float y, float _angle, float xScale, float yScale) : Component(_gameObject)
 {
-	position.x = x;
-	position.y = y;
-	angle = _angle;
-	scale.x = xScale;
-	scale.y = yScale;
+	SetAbsolutePosition(Vector2(x, y));
+	SetAbsoluteAngle(_angle);
+	SetAbsoluteScale(Vector2(xScale, yScale));
 }
 
 Transform::~Transform()
 {
 }
 
-Vector2 Transform::GetAbsolutePosition()
+const Vector2& Transform::GetAbsolutePosition() const
 {
-	if (parent == NULL)
+	//if (parent == NULL)
+	//{
+	//	return position;
+	//}
+	//const float& parentAngle = parent->GetAbsoluteAngle() * M_PI / 180.0f;
+	//const Vector2& rel = Vector2(position.x * cos(parentAngle) - position.y * sin(parentAngle), position.x * sin(parentAngle) + position.y * cos(parentAngle));
+	//const Vector2& pos = parent->GetAbsolutePosition() + rel;
+	if (parent != NULL)
 	{
-		return position;
+		SDL_SetRenderDrawColor(Game::gRenderer, 0x00, 0xFF, 0x00, 0xFF);
+		SDL_RenderDrawLine(Game::gRenderer, parent->GetAbsolutePosition().x - Camera::x, parent->GetAbsolutePosition().y - Camera::y, position.x - Camera::x, position.y - Camera::y);
+		float x1 = parent->GetAbsolutePosition().x;
+		float y1 = parent->GetAbsolutePosition().y;
+		float x2 = position.x;
+		float y2 = position.y;
+		if (x1 + 1 - x2 != 0 )
+		{
+			std::cout << "Lag " << "X : " << x1 - x2 << ", Y: " << y1 - y2;
+		}
 	}
-	const float& parentAngle = parent->GetAbsoluteAngle() * M_PI / 180.0f;
-	const Vector2& rel = Vector2(position.x * cos(parentAngle) - position.y * sin(parentAngle), position.x * sin(parentAngle) + position.y * cos(parentAngle));
-	const Vector2& pos = parent->GetAbsolutePosition() + rel;
-	SDL_SetRenderDrawColor(Game::gRenderer, 0x00, 0xFF, 0x00, 0xFF);
-	SDL_RenderDrawLine(Game::gRenderer, parent->GetAbsolutePosition().x - Camera::x, parent->GetAbsolutePosition().y - Camera::y, pos.x - Camera::x, pos.y - Camera::y);
-	return pos;
+	return position;
 }
 
-float Transform::GetAbsoluteAngle()
+const float& Transform::GetAbsoluteAngle() const
 {
-	if (parent == NULL)
-	{
-		return angle;
-	}
-	return parent->GetAbsoluteAngle() + angle;
+	return angle;
 }
 
-Vector2 Transform::GetAbsoluteScale()
+const Vector2& Transform::GetAbsoluteScale() const
 {
+	return scale;
+}
+
+const Vector2& Transform::GetRelativePosition() const
+{
+	return relativePosition;
+}
+
+const float& Transform::GetRelativeAngle() const
+{
+	return relativeAngle;
+}
+
+const Vector2& Transform::GetRelativeScale() const
+{
+	return relativeScale;
+}
+
+void Transform::SetAbsolutePosition(const Vector2& _position) 
+{
+	position = _position;
 	if (parent == NULL)
 	{
-		return scale;
+		relativePosition = _position;
 	}
-	return parent->GetAbsoluteScale() * scale;
+	else
+	{
+		relativePosition = (position - parent->GetAbsolutePosition()).Rotation(-parent->GetAbsoluteAngle() * M_PI / 180.0f);
+	}
+	for (Transform* t : children)
+	{
+		t->SetRelativePosition(t->GetRelativePosition());
+	}
+}
+
+void Transform::SetRelativePosition(const Vector2& _position)
+{
+	relativePosition = _position;
+	if (parent == NULL)
+	{
+		position = _position;
+	}
+	else
+	{
+		position = parent->GetAbsolutePosition() + relativePosition.Rotation(parent->GetAbsoluteAngle() * M_PI / 180.0f);
+	}
+	for (Transform* t : children)
+	{
+		t->SetRelativePosition(t->GetRelativePosition());
+	}
+}
+
+void Transform::SetAbsoluteAngle(const float& _angle)
+{
+	angle = _angle;
+	if (parent == NULL)
+	{
+		relativeAngle = angle;
+	}
+	else
+	{
+		relativeAngle = angle - parent->GetAbsoluteAngle();
+	}
+	for (Transform* t : children)
+	{
+		t->SetRelativeAngle(t->GetRelativeAngle());
+		t->SetRelativePosition(t->GetRelativePosition());
+	}
+}
+
+void Transform::SetRelativeAngle(const float& _angle)
+{
+	relativeAngle = _angle;
+	if (parent == NULL)
+	{
+		angle = angle;
+	}
+	else
+	{
+		angle = relativeAngle + parent->GetAbsoluteAngle();
+	}
+	for (Transform* t : children)
+	{
+		t->SetRelativeAngle(t->GetRelativeAngle());
+		t->SetRelativePosition(t->GetRelativePosition());
+	}
+}
+
+void Transform::SetAbsoluteScale(const Vector2& _scale)
+{
+	scale = _scale;
+	if (parent == NULL)
+	{
+		relativeScale = scale;
+	}
+	else
+	{
+		const Vector2& parentScale = parent->GetAbsoluteScale();
+		if (parentScale.x == 0)
+		{
+			scale.x = 0;
+			relativeScale.x = 0;
+		}
+		else
+		{
+			relativeScale.x = scale.x / parentScale.x;
+		}
+
+		if (parentScale.y == 0)
+		{
+			scale.y = 0;
+			relativeScale.y = 0;
+		}
+		else
+		{
+			relativeScale.y = scale.y / parentScale.y;
+		}
+	}
+	for (Transform* t : children)
+	{
+		t->SetRelativeScale(t->GetRelativeScale());
+	}
+}
+
+void Transform::SetRelativeScale(const Vector2& _scale)
+{
+	relativeScale = _scale;
+	if (parent == NULL)
+	{
+		scale = relativeScale;
+	}
+	else
+	{
+		const Vector2& parentScale = parent->GetAbsoluteScale();
+		scale.x = scale.x * parentScale.x;
+		scale.y = scale.y * parentScale.y;
+	}
+	for (Transform* t : children)
+	{
+		t->SetRelativeScale(t->GetRelativeScale());
+	}
+}
+
+
+void Transform::SetAbsolutePositionDelta(const Vector2& delta)
+{
+	SetAbsolutePosition(position + delta);
+}
+
+void Transform::SetRelativePositionDelta(const Vector2& delta)
+{
+	SetRelativePosition(relativePosition + delta);
+}
+
+void Transform::SetAbsoluteAngleDelta(const float& delta)
+{
+	SetAbsoluteAngle(angle + delta);
+}
+
+void Transform::SetRelativeAngleDelta(const float& delta)
+{
+	SetRelativeAngle(relativeAngle + delta);
+}
+
+void Transform::SetAbsoluteScaleDelta(const Vector2& delta)
+{
+	SetAbsoluteScale(scale + delta);
+}
+
+void Transform::SetRelativeScaleDelta(const Vector2& delta)
+{
+	SetRelativeScale(relativeScale + delta);
+}
+
+void Transform::SetParent(Transform* _parent)
+{
+	if (parent != NULL)
+	{
+		parent->children.remove(this);
+	}
+	parent = _parent;
+	if (parent != NULL)
+	{
+		parent->children.push_back(this);
+	}
+	SetAbsolutePosition(position);
+	SetAbsoluteAngle(angle);
+	SetAbsoluteScale(scale);
 }
 
 void Transform::SetParentRelative(Transform* _parent)
 {
-	Vector2 relativePos = GetAbsolutePosition() - _parent->GetAbsolutePosition();
+	/*Vector2 relativePos = GetAbsolutePosition() - _parent->GetAbsolutePosition();
 	const float& parentAngle = -_parent->GetAbsoluteAngle();
 	position =  Vector2(relativePos.x * cos(parentAngle) - relativePos.y * sin(parentAngle), relativePos.x * sin(parentAngle) + relativePos.y * cos(parentAngle));
 	angle = GetAbsoluteAngle() - _parent->GetAbsoluteAngle();
@@ -65,17 +253,29 @@ void Transform::SetParentRelative(Transform* _parent)
 	const Vector2& myScale = GetAbsoluteScale();
 	scale.x = parentScale.x != 0 ? myScale.x / parentScale.x : 1;
 	scale.y = parentScale.y != 0 ? myScale.y / parentScale.y : 1;
+	parent = _parent;*/
+	if (parent != NULL)
+	{
+		parent->children.remove(this);
+	}
 	parent = _parent;
+	if (parent != NULL)
+	{
+		parent->children.push_back(this);
+	}
+	SetRelativePosition(relativePosition);
+	SetRelativeAngle(relativeAngle);
+	SetRelativeScale(relativeScale);
 }
 
-Vector2 Transform::Right()
+const Vector2 Transform::Right() const
 {
-	const float& absoluteAngle = GetAbsoluteAngle() * M_PI / 180.0f;
-	return Vector2(cos(absoluteAngle), sin(absoluteAngle));
+	const float& _absoluteAngle = GetAbsoluteAngle() * M_PI / 180.0f;
+	return Vector2(cos(_absoluteAngle), sin(_absoluteAngle));
 }
 
-Vector2 Transform::Up()
+const Vector2 Transform::Up() const
 {
-	const float& absoluteAngle = GetAbsoluteAngle() * M_PI / 180.0f;
-	return Vector2(-sin(absoluteAngle), cos(absoluteAngle));
+	const float& _absoluteAngle = GetAbsoluteAngle() * M_PI / 180.0f;
+	return Vector2(-sin(_absoluteAngle), cos(_absoluteAngle));
 }

@@ -2,47 +2,41 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Game.h"
+#include "RenderModule.h"
 
 Renderer::Renderer()
 {
-	
+	RenderModule::AddRenderer(this);
 }
 
-Renderer::Renderer(GameObject* _gameObject, std::string _filePath, SDL_Rect* _renderQuad): Component(_gameObject)
+Renderer::Renderer(int _layer)
 {
-	filePath = _filePath;
-	clip = _renderQuad;
+	layer = _layer;
+	RenderModule::AddRenderer(this);
 }
 
 Renderer::~Renderer()
 {
-	delete texture;
-	delete clip;
-	delete center;
+	RenderModule::RemoveRenderer(this);
 }
 
-void Renderer::Awake()
+void Renderer::SetLayer(int _layer)
 {
-	texture = new Texture();
-	texture->globalRenderer = Game::gRenderer;
-	texture->loadFromFile(filePath);
-
-	center = new Vector2(texture->getWidth() * gameObject->transform->GetAbsoluteScale().x / 2, texture->getHeight() * gameObject->transform->GetAbsoluteScale().y / 2);
+	if (layer != _layer)
+	{
+		RenderModule::RemoveRenderer(this);
+		layer = _layer;
+		RenderModule::AddRenderer(this);
+	}
 }
 
-void Renderer::Update()
+int Renderer::GetLayer()
 {
-	SDL_Point* pivot = new SDL_Point();
-	pivot->x = floor(center->x);
-	pivot->y = floor(center->y);
-	int xPos = ceil(gameObject->transform->GetAbsolutePosition().x - texture->getWidth() * gameObject->transform->GetAbsoluteScale().x / 2);
-	int yPos = ceil(gameObject->transform->GetAbsolutePosition().y - texture->getHeight() * gameObject->transform->GetAbsoluteScale().y / 2);
-	xPos -= Camera::x;
-	yPos -= Camera::y;
-	SDL_Rect* renderQuad = new SDL_Rect();
-	renderQuad->x = ceil(xPos);
-	renderQuad->y = ceil(yPos);
-	renderQuad->w = ceil(texture->getWidth() * gameObject->transform->GetAbsoluteScale().x);
-	renderQuad->h = ceil(texture->getHeight() * gameObject->transform->GetAbsoluteScale().y);
-	texture->render(xPos, yPos, clip, renderQuad, gameObject->transform->GetAbsoluteAngle(), pivot);
+	return layer;
 }
+
+void Renderer::Render()
+{
+
+}
+

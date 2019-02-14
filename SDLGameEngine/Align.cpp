@@ -23,7 +23,7 @@ float MapToRange(float angle)
 void Align::Update()
 {
 	// Get the naive direction to the target
-	float rotation = orientation - gameObject->transform->angle * M_PI / 180.0f;
+	float rotation = orientation - gameObject->transform->GetAbsoluteAngle() * M_PI / 180.0f;
 
 	// Map the result to (-pi, pi)
 	rotation = MapToRange(rotation);
@@ -53,7 +53,7 @@ void Align::Update()
 	// The final target rotation combines speed(already in the variable) and direction 
 	targetRotation *= rotation / rotationSize;
 	// Acceleration tries to get to the target rotation
-	steering.angular = targetRotation - gameObject->transform->angle * M_PI / 180.0f; 
+	steering.angular = targetRotation - gameObject->transform->GetAbsoluteAngle() * M_PI / 180.0f; 
 	steering.angular /= timeToTarget;
     // Check if the acceleration is too great 5
 	float angularAcceleration = abs(steering.angular);

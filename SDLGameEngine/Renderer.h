@@ -8,14 +8,13 @@ class Renderer:
 {
 public:
 	Renderer();
-	Renderer(GameObject* _gameObject, std::string _filePath, SDL_Rect* _clip = NULL);
+	Renderer(int _layer);
 	virtual ~Renderer();
-	void Awake();
-	void Update();
+	virtual void Render();
+	void SetLayer(int _layer);
+	int GetLayer();
 
-	std::string filePath;
-	Texture* texture = NULL;
-	SDL_Rect* clip = NULL;
-	Vector2* center;
+private:
+	int layer;
 };
 

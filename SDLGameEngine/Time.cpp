@@ -20,6 +20,7 @@ void Time::Start()
 {
 	timeElapsedMs = 0;
 	unscaledTimeElapsedMs = std::chrono::high_resolution_clock::now();
+	deltaTimeMs = 1 / 60.0f;
 	Module::Start();
 }
 
@@ -30,7 +31,7 @@ void Time::Update()
 	unscaledTimeElapsedMs = std::chrono::high_resolution_clock::now();
 	if (unscaledDeltaTimeMs.count() < 0.033f)
 	{
-		deltaTimeMs = unscaledDeltaTimeMs.count() * (double)timeScale;
+		deltaTimeMs = (0.9f * deltaTimeMs + 0.1f * unscaledDeltaTimeMs.count()) * (double)timeScale;
 	}
 	
 	timeElapsedMs += deltaTimeMs;

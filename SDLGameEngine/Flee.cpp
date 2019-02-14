@@ -19,7 +19,7 @@ void Flee::Update()
 {
 
 	// Get direction from target
-	steering.linear = gameObject->transform->position - target->position;
+	steering.linear = gameObject->transform->GetAbsolutePosition() - target->GetAbsolutePosition();
 
 	// Give full accelaration in this direction
 	steering.linear.Normalize();

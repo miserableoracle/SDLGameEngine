@@ -18,7 +18,7 @@ void Arrive::Update()
 {
 
 	// Get direction to target
-	Vector2 direction = target->position - gameObject->transform->position;
+	Vector2 direction = target->GetAbsolutePosition() - gameObject->transform->GetAbsolutePosition();
 	float distance = direction.Length();
 
 	// Check if we are there

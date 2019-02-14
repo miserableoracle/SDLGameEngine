@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include <list>
 #include "Component.h"
 #include "Vector2.h"
 
@@ -11,19 +12,49 @@ public:
 	Transform(GameObject* _gameObject, float x = 0, float y = 0, float _angle = 0, float xScale = 1, float yScale = 1);
 	~Transform();
 
-	Vector2 GetAbsolutePosition();
-	float GetAbsoluteAngle();
-	Vector2 GetAbsoluteScale();
+	const Vector2& GetAbsolutePosition() const;
+	const float& GetAbsoluteAngle() const;
+	const Vector2& GetAbsoluteScale() const;
 
+	const Vector2& GetRelativePosition() const;
+	const float& GetRelativeAngle() const;
+	const Vector2& GetRelativeScale() const;
+
+	void SetAbsolutePosition(const Vector2& _position);
+	void SetAbsoluteAngle(const float& _angle);
+	void SetAbsoluteScale(const Vector2& _scale);
+
+	void SetRelativePosition(const Vector2& _position);
+	void SetRelativeAngle(const float& _angle);
+	void SetRelativeScale(const Vector2& _scale);
+
+	void SetAbsolutePositionDelta(const Vector2& delta);
+	void SetAbsoluteAngleDelta(const float& delta);
+	void SetAbsoluteScaleDelta(const Vector2& delta);
+
+	void SetRelativePositionDelta(const Vector2& delta);
+	void SetRelativeAngleDelta(const float& delta);
+	void SetRelativeScaleDelta(const Vector2& delta);
+
+	void SetParent(Transform* _parent);
 	void SetParentRelative(Transform* _parent);
+
+	std::list<Transform*> children;
+
+	const Vector2 Right() const;
+	const Vector2 Up() const;
+
+	Transform* parent = NULL;
+
+private:
 
 	Vector2 position;
 	float angle;
 	Vector2 scale;
 
-	Vector2 Right();
-	Vector2 Up();
+	Vector2 relativePosition;
+	float relativeAngle;
+	Vector2 relativeScale;
 
-	Transform* parent = NULL;
 };
 

@@ -17,7 +17,7 @@ Seek::~Seek()
 void Seek::Update()
 {
 	// Get direction to target
-	steering.linear = target->position - gameObject->transform->position;
+	steering.linear = target->GetAbsolutePosition() - gameObject->transform->GetAbsolutePosition();
 
 	// Give full accelaration in this direction
 	steering.linear.Normalize();

@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Input.h"
 #include "Time.h"
+#include "RenderModule.h"
 
 SDL_Window* Game::gWindow = NULL;
 SDL_Renderer* Game::gRenderer = NULL;
@@ -81,41 +82,50 @@ bool Game::Init()
 		}
 	}
 
-	// Initialize modules
-	modules.push_back(new Input());
-	modules.push_back(new Time());
+	InitializeModules();
 
 	return success;
 }
+
+void Game::InitializeModules()
+{
+	Input * input = new Input();
+	input->Start();
+	modules.push_back(input);
+
+	Time * time = new Time();
+	time->Start();
+	modules.push_back(time);
+
+	RenderModule * renderModule = new RenderModule();
+	renderModule->Start();
+	modules.push_back(renderModule);
+}
+
+
 
 void Game::Setup()
 {
 
 }
 
-void Game::Start()
+void Game::SetScene(Scene* _scene)
 {
-	for (Module* m : modules)
+	if (currentScene != NULL)
 	{
-		m->Start();
+		currentScene->Cleanup();
+		delete currentScene;
 	}
-
-	for (GameObject* g : gameObjects)
-	{
-		g->Start();
-	}
+	currentScene = _scene;
+	currentScene->game = this;
+	currentScene->Setup();
 }
+
 
 void Game::Update()
 {
 	SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
 	SDL_RenderClear(gRenderer);
-
-
-	/*for (Module* m : modules)
-	{
-		m->Update();
-	}*/
 
 	for (GameObject* g : gameObjects)
 	{
@@ -123,19 +133,7 @@ void Game::Update()
 		{
 			g->Update();
 		}
-		//for (Module* m : modules)
-		//{
-		//	m->Update();
-		//}
 	}
-
-	for (GameObject* g : objectsToDestroy)
-	{
-		gameObjects.remove(g);
-		delete g;
-	}
-
-	objectsToDestroy.clear();
 
 
 	for (Module* m : modules)
@@ -143,6 +141,18 @@ void Game::Update()
 		m->Update();
 	}
 
+	for (GameObject* g : objectsToDestroy)
+	{
+		gameObjects.remove(g);
+		if (currentScene)
+		{
+			currentScene->ReleaseFromScene(g);
+		}
+		delete g;
+		g = NULL;
+	}
+
+	objectsToDestroy.clear();
 	//Update screen
 	SDL_RenderPresent(gRenderer);
 	
@@ -182,17 +192,16 @@ GameObject* Game::Instantiate(std::string name, const float& x, const float& y, 
 {
 	GameObject* go = new GameObject(this, name, x, y, angle);
 	gameObjects.push_back(go);
-	go->Start();
+	go->Awake();
 	return go;
 }
 
 GameObject* Game::Instantiate(GameObject* go, const float& x, const float& y, const float& angle)
 {
-	go->transform->position.x = x;
-	go->transform->position.y = y;
-	go->transform->angle = angle;
+	go->transform->SetAbsolutePosition(Vector2(x, y));
+	go->transform->SetAbsoluteAngle(angle);
 	gameObjects.push_back(go);
-	go->Start();
+	go->Awake();
 	return go;
 }
 

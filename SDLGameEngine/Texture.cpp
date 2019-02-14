@@ -1,5 +1,5 @@
 #include "Texture.h"
-
+#include "Rect.h"
 
 
 Texture::Texture()

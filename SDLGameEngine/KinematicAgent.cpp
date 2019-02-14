@@ -16,6 +16,6 @@ KinematicAgent::~KinematicAgent()
 
 void KinematicAgent::Update()
 {
-	gameObject->transform->position += steering->velocity / 60.0f;
-	gameObject->transform->angle = atan2(steering->velocity.y, steering->velocity.x) * 180.0f / M_PI + 90.0f;
+	gameObject->transform->SetAbsolutePositionDelta(steering->velocity / 60.0f);
+	gameObject->transform->SetAbsoluteAngle(atan2(steering->velocity.y, steering->velocity.x) * 180.0f / M_PI + 90.0f);
 }

@@ -16,7 +16,8 @@ Bullet::~Bullet()
 void Bullet::Update()
 {
 	Behaviour::Update();
-	gameObject->transform->position += speed * gameObject->transform->Up() * Time::DeltaTime();
+	Vector2 up = gameObject->transform->Up();
+	gameObject->transform->SetAbsolutePositionDelta(speed * up * Time::DeltaTime());
 	timer += Time::DeltaTime();
 	if (timer > destroyTime)
 	{

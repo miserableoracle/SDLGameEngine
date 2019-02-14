@@ -20,10 +20,10 @@ UpdateTarget::~UpdateTarget()
 
 void UpdateTarget::Update()
 {
-	if ((gameObject->transform->position - steer->target).Length() <= 10)
+	if ((gameObject->transform->GetAbsolutePosition() - steer->target).Length() <= 10)
 	{
 		steer->target.x = rand() % 1280;
 		steer->target.y = rand() % 720;
-		targetObject->transform->position = steer->target;
+		targetObject->transform->SetAbsolutePosition(steer->target);
 	}
 }

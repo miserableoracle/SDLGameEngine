@@ -3,7 +3,7 @@ class Module
 {
 public:
 	Module();
-	~Module();
+	virtual ~Module();
 	virtual void Start();
 	virtual void Update();
 	virtual void CleanUp();

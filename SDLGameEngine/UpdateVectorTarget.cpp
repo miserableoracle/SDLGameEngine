@@ -23,11 +23,11 @@ UpdateVectorTarget::~UpdateVectorTarget()
 void UpdateVectorTarget::Update()
 {
 	timer += Time::DeltaTime();
-	if ((gameObject->transform->position - *target).Length() <= 10 || timer > maxTime)
+	if ((gameObject->transform->GetAbsolutePosition() - target).Length() <= 10 || timer > maxTime)
 	{
-		target->x = Camera::x + rand() % Camera::width;
-		target->y = Camera::y + rand() % Camera::height;
-		targetObject->transform->position = *target;
+		target.x = Camera::x + rand() % Camera::width;
+		target.y = Camera::y + rand() % Camera::height;
+		targetObject->transform->SetAbsolutePosition(target);
 		timer = 0;
 	}
 	Behaviour::Update();

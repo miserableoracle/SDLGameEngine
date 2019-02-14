@@ -26,11 +26,14 @@ public:
 	float Dot(const Vector2 & v) const;
 
 	Vector2 OrthoNormal() const;
-	Vector2 Normalized();
+	Vector2 Normalized() const;
 	Vector2 & Normalize();
+	const Vector2 Rotation(const float& angle) const;
+	void Rotate(const float& angle);
+
 
 	//ASSINGMENT AND EQUALITY OPERATIONS
-	inline Vector2 & operator= (const Vector2 & v) { x = v.x; y = v.y; return *this; }
+	inline Vector2 & operator = (const Vector2 & v) { x = v.x; y = v.y; return *this; }
 	inline Vector2 & operator = (const float & f) { x = f; y = f; return *this; }
 	inline Vector2 & operator - (void) { x = -x; y = -y; return *this; }
 	inline bool operator == (const Vector2 & v) const { return (x == v.x) && (y == v.y); }

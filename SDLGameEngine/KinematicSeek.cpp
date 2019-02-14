@@ -18,7 +18,7 @@ KinematicSeek::~KinematicSeek()
 
 void KinematicSeek::Update()
 {
-	Vector2 toVector = target - gameObject->transform->position;
+	Vector2 toVector = target - gameObject->transform->GetAbsolutePosition();
 	float distance = toVector.Length();
 	velocity = (toVector / distance) * (distance < slowDistance ? distance : maxSpeed);
 }

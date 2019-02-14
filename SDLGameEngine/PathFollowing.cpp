@@ -20,11 +20,11 @@ void PathFollowing::Start()
 {
 	currentWaypoint = waypoints.begin();
 
-	float distance = (gameObject->transform->position - *currentWaypoint).Length();
+	float distance = (gameObject->transform->GetAbsolutePosition() - *currentWaypoint).Length();
 	float currentDistance = 0;
 	for (std::list<Vector2>::iterator it = waypoints.begin(); it != waypoints.end(); ++it)
 	{
-		currentDistance = (gameObject->transform->position - *it).Length();
+		currentDistance = (gameObject->transform->GetAbsolutePosition() - *it).Length();
 		if (currentDistance < distance)
 		{
 			distance = currentDistance;
@@ -32,7 +32,7 @@ void PathFollowing::Start()
 		}
 	}
 
-	target->position = *currentWaypoint;
+	target->SetAbsolutePosition(*currentWaypoint);
 
 
 	Vector2 closestWaypoint = *currentWaypoint;
@@ -41,9 +41,9 @@ void PathFollowing::Start()
 	{
 		Vector2 nextPoint = *currentWaypoint;
 		Vector2 lineVector = nextPoint - closestWaypoint;
-		Vector2 toVector = gameObject->transform->position - closestWaypoint;
+		Vector2 toVector = gameObject->transform->GetAbsolutePosition() - closestWaypoint;
 		Vector2 projection = toVector.Dot(lineVector) * (lineVector / (lineVector.Length() * lineVector.Length()));
-		target->position = projection + closestWaypoint;
+		target->SetAbsolutePosition(projection + closestWaypoint);
 		--currentWaypoint;
 	}
 
@@ -52,14 +52,14 @@ void PathFollowing::Start()
 
 void PathFollowing::Update()
 {
-	if ((target->position - gameObject->transform->position).Length() < distanceThreshold)
+	if ((target->GetAbsolutePosition() - gameObject->transform->GetAbsolutePosition()).Length() < distanceThreshold)
 	{
 		if (currentWaypoint != waypoints.end())
 		{
 			++currentWaypoint;
 			if (currentWaypoint != waypoints.end())
 			{
-				target->position = *currentWaypoint;
+				target->SetAbsolutePosition(*currentWaypoint);
 			}
 		}
 	}

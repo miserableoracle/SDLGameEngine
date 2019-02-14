@@ -21,11 +21,8 @@ int main( int argc, char* args[] )
 		printf( "Failed to initialize!\n" );
 	}
 	else
-	{
-		
-		game->Setup();
-		game->Start();
-		
+	{		
+		game->Setup();		
 		while (!Game::quit)
 		{
 			game->Update();

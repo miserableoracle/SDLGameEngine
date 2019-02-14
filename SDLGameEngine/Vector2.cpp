@@ -20,7 +20,7 @@ float Vector2::DistanceSquared(const Vector2 & v) const { return ((x - v.x) * (x
 float Vector2::Dot(const Vector2 & v) const { return x * v.x + y * v.y; }
 
 Vector2 Vector2::OrthoNormal() const { return Vector2(-y, x); }
-Vector2 Vector2::Normalized() 
+Vector2 Vector2::Normalized() const
 {
 	float normalX = 0;
 	float normalY = 0;
@@ -42,6 +42,16 @@ Vector2 & Vector2::Normalize()
 
 	x = y = 0;
 	return *this;
+}
+
+const Vector2 Vector2::Rotation(const float& angle) const
+{
+	return Vector2(x * cos(angle) - y * sin(angle), x * sin(angle) + y * cos(angle));
+}
+
+void Vector2::Rotate(const float& angle)
+{
+	*this = Rotation(angle);
 }
 
 

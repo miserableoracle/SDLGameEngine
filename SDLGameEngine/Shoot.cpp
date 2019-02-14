@@ -19,6 +19,6 @@ void Shoot::Update()
 	// Shoot
 	if (Input::GetKeyDown(SDLK_SPACE))
 	{
-		game->Instantiate(game->Prefab("Bullet"), gameObject->transform->GetAbsolutePosition() - 50 * gameObject->transform->Up(), gameObject->transform->GetAbsoluteAngle() + 180);
+		Instantiate(game->Prefab("Bullet"), gameObject->transform->GetAbsolutePosition() - 50 * gameObject->transform->Up(), gameObject->transform->GetAbsoluteAngle() + 180);
 	}
 }

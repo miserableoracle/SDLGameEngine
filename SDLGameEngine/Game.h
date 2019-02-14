@@ -7,8 +7,8 @@
 #include "GameObject.h"
 #include "Input.h"
 #include "Transform.h"
-#include "Renderer.h"
 #include "Camera.h"
+#include "Scene.h"
 
 typedef GameObject* (*prefab)(Game* game);
 
@@ -16,17 +16,18 @@ class Game
 {
 public:
 	Game();
-	~Game();
+	virtual ~Game();
 
 	virtual void Awake();
 	virtual bool Init();
 	virtual void Setup();
-	void Start();
 	void Update();
 	void End();
 	static SDL_Window* gWindow;
 	//The window renderer
 	static SDL_Renderer* gRenderer;
+
+	void SetScene(Scene* scene);
 
 	GameObject* CreateGameObject(std::string name = "", float x = 0, float y = 0, float angle = 0);
 	GameObject* Instantiate(std::string name = "", const float& x = 0, const float& y = 0, const float& angle = 0);
@@ -46,13 +47,12 @@ public:
 
 	static bool quit;
 
-protected:
+private:
+	void InitializeModules();
 
-	//The window we'll be rendering to
-	
+	Scene* currentScene = NULL;
 	std::list<GameObject*> gameObjects;
 	std::list<Module*> modules;
-
 	std::list<GameObject*> objectsToDestroy;
 };
 
