@@ -62,6 +62,12 @@
     <Filter Include="Engine\Source Files\Utils">
       <UniqueIdentifier>{a24b8458-c6fd-4a6d-b4c3-86f1f05c2f39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Physics">
+      <UniqueIdentifier>{935d3661-5c5a-4658-bcac-59d2000e2ef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source Files\Physics">
+      <UniqueIdentifier>{54436597-ad1e-444b-b8dd-4c8c43e9344d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -193,6 +199,9 @@
     <ClCompile Include="RenderModule.cpp">
       <Filter>Engine\Source Files\Core\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Engine\Source Files\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestDemo.h">
@@ -320,6 +329,9 @@
     </ClInclude>
     <ClInclude Include="RenderModule.h">
       <Filter>Engine\Header Files\Core\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

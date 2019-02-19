@@ -56,5 +56,13 @@ private:
 	float relativeAngle;
 	Vector2 relativeScale;
 
+	Vector2 nextPosition;
+	float nextAngle;
+	Vector2 nextScale;
+
+	Vector2 nextRelativePosition;
+	float nextRelativeAngle;
+	Vector2 nextRelativeScale;
+
 };
 

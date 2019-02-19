@@ -154,6 +154,7 @@
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="MoveInCircle.cpp" />
     <ClCompile Include="PathFollowing.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PlayerControls.cpp" />
     <ClCompile Include="Pursue.cpp" />
     <ClCompile Include="Rect.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="MoveInCircle.h" />
     <ClInclude Include="PathFollowing.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="PlayerControls.h" />
     <ClInclude Include="Pursue.h" />
     <ClInclude Include="Rect.h" />

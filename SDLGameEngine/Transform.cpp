@@ -23,25 +23,10 @@ Transform::~Transform()
 
 const Vector2& Transform::GetAbsolutePosition() const
 {
-	//if (parent == NULL)
-	//{
-	//	return position;
-	//}
-	//const float& parentAngle = parent->GetAbsoluteAngle() * M_PI / 180.0f;
-	//const Vector2& rel = Vector2(position.x * cos(parentAngle) - position.y * sin(parentAngle), position.x * sin(parentAngle) + position.y * cos(parentAngle));
-	//const Vector2& pos = parent->GetAbsolutePosition() + rel;
 	if (parent != NULL)
 	{
 		SDL_SetRenderDrawColor(Game::gRenderer, 0x00, 0xFF, 0x00, 0xFF);
 		SDL_RenderDrawLine(Game::gRenderer, parent->GetAbsolutePosition().x - Camera::x, parent->GetAbsolutePosition().y - Camera::y, position.x - Camera::x, position.y - Camera::y);
-		float x1 = parent->GetAbsolutePosition().x;
-		float y1 = parent->GetAbsolutePosition().y;
-		float x2 = position.x;
-		float y2 = position.y;
-		if (x1 + 1 - x2 != 0 )
-		{
-			std::cout << "Lag " << "X : " << x1 - x2 << ", Y: " << y1 - y2;
-		}
 	}
 	return position;
 }

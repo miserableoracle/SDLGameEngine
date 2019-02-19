@@ -1,7 +1,2 @@
-﻿  Bullet.cpp
-  Scene1.cpp
-c:\users\abhis\onedrive\documents\github\sdlgameengine\sdlgameengine\sdlgameengine\scene1.cpp(69): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-  Shooter.cpp
-c:\users\abhis\onedrive\documents\github\sdlgameengine\sdlgameengine\sdlgameengine\shooter.cpp(54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  Physics.cpp
   SDLGameEngine.vcxproj -> C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDLGameEngine\Debug\SDLGameEngine.exe

@@ -125,20 +125,22 @@ void Game::SetScene(Scene* _scene)
 void Game::Update()
 {
 	SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0x00);
-	SDL_RenderClear(gRenderer);
+	SDL_RenderClear(gRenderer);	
+
+	for (Module* m : modules)
+	{
+		m->Update();
+	}
+
 
 	for (GameObject* g : gameObjects)
 	{
 		if (g->isActive())
 		{
+
 			g->Update();
+			
 		}
-	}
-
-
-	for (Module* m : modules)
-	{
-		m->Update();
 	}
 
 	for (GameObject* g : objectsToDestroy)
@@ -153,8 +155,9 @@ void Game::Update()
 	}
 
 	objectsToDestroy.clear();
-	//Update screen
+	//Update screen			
 	SDL_RenderPresent(gRenderer);
+
 	
 }
 

@@ -26,6 +26,7 @@ void Behaviour::Update()
 	Component::Update();
 }
 
+
 void Behaviour::Cleanup()
 {
 	Component::Cleanup();

@@ -17,8 +17,6 @@ public:
 	virtual void Update();
 	virtual void Cleanup();
 
-	GameObject * Instantiate();
-
 	GameObject* gameObject;
 	bool enabled = true;
 
