@@ -44,10 +44,15 @@ void GameObject::AddComponent(Component* component)
 	component->game = game;
 	component->scene = scene;
 	components.push_back(component);
+	if (awoken)
+	{
+		component->Awake();
+	}
 }
 
 void GameObject::Awake()
 {
+	awoken = true;
 	for (Component* component : components)
 	{
 		component->Awake();
@@ -61,6 +66,17 @@ void GameObject::Update()
 		if (component->enabled)
 		{
 			component->OnUpdate();
+		}
+	}
+}
+
+void GameObject::FixedUpdate()
+{
+	for (Component* component : components)
+	{
+		if (component->enabled)
+		{
+			component->FixedUpdate();
 		}
 	}
 }

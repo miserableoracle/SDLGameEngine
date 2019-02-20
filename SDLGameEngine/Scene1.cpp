@@ -18,6 +18,7 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Game.h"
+#include "Rigidbody.h"
 
 
 Scene1::Scene1()
@@ -59,14 +60,16 @@ void Scene1::Setup()
 
 	graphic->transform->SetParentRelative(go->transform);
 
-	graphic->AddComponent(new CameraFollow());
+
 	go->AddComponent(new PlayerControls());
+	go->AddComponent(new CameraFollow());
 
 	graphic->AddComponent(new Shoot());
 	
 	for (int i = 0; i < 10; i++)
 	{
 		GameObject* enemy = Instantiate(game->Prefab("Enemy"), Camera::x + rand() % Camera::width, Camera::y + rand() % Camera::height, 0);
+		enemy->GetComponent<Rigidbody>()->AddForce(500 * Vector2(rand() % 100 - 50 , rand() % 100 - 50));
 	}
 
 

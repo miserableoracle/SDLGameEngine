@@ -24,7 +24,7 @@ Component::~Component()
 
 void Component::Awake()
 {
-
+	awoken = true;
 }
 
 void Component::Start()
@@ -37,6 +37,10 @@ void Component::Update()
 
 }
 
+void Component::FixedUpdate()
+{
+
+}
 
 void Component::Cleanup()
 {

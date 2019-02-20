@@ -9,6 +9,7 @@
 #include "Transform.h"
 #include "Camera.h"
 #include "Scene.h"
+#include "Physics.h"
 
 typedef GameObject* (*prefab)(Game* game);
 
@@ -47,6 +48,8 @@ public:
 
 	static bool quit;
 
+	Physics* const physics = new Physics();
+
 private:
 	void InitializeModules();
 
@@ -54,5 +57,7 @@ private:
 	std::list<GameObject*> gameObjects;
 	std::list<Module*> modules;
 	std::list<GameObject*> objectsToDestroy;
+
+	static float fixedDeltaAccumulator;
 };
 

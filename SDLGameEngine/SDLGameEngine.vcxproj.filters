@@ -202,6 +202,15 @@
     <ClCompile Include="Physics.cpp">
       <Filter>Engine\Source Files\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Rigidbody.cpp">
+      <Filter>Engine\Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerdStorage.cpp">
+      <Filter>Engine\Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestDemo.h">
@@ -333,5 +342,12 @@
     <ClInclude Include="Physics.h">
       <Filter>Engine\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Rigidbody.h">
+      <Filter>Engine\Header Files\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerdStorage.h">
+      <Filter>Engine\Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h" />
   </ItemGroup>
 </Project>

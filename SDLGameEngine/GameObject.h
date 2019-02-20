@@ -15,11 +15,13 @@ public:
 	~GameObject();
 	void AddComponent(Component* component);
 	template<class T> T* GetComponent();
+	template<class T> std::list<T*> GetComponents();
 	template<class T> void RemoveComponent();
 	/*template<class T> T* GetComponents();
 	template<class T> void RemoveComponents();*/
 	void Awake();
 	void Update();
+	void FixedUpdate();
 	void Cleanup();
 	std::string name;
 	Transform* transform;
@@ -34,6 +36,7 @@ private:
 	Scene* scene = NULL;
 	bool active = true;
 	friend class Scene;
+	bool awoken = false;
 };
 
 template<class T> T* GameObject::GetComponent()
@@ -50,6 +53,20 @@ template<class T> T* GameObject::GetComponent()
 	return NULL;
 }
 
+template<class T> std::list<T*> GameObject::GetComponents()
+{
+	std::list<T*> foundComponents;
+	for (Component* component : components)
+	{
+		T* found = dynamic_cast<T*>(component);
+		if (found != NULL)
+		{
+			foundComponents.push_back(found);
+		}
+	}
+	return foundComponents;
+}
+
 template<class T> void GameObject::RemoveComponent()
 {
 	for (Component* component : components)
@@ -58,6 +75,8 @@ template<class T> void GameObject::RemoveComponent()
 		if (found != NULL)
 		{
 			components.remove(component);
+			delete found;
+			found = NULL;
 			return;
 		}		
 	}

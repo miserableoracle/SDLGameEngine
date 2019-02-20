@@ -8,6 +8,7 @@ SDL_Renderer* Game::gRenderer = NULL;
 int Game::screenWidth = 800;
 int Game::screenHeight = 600;
 bool Game::quit = false;
+float Game::fixedDeltaAccumulator = 0;
 
 Game::Game()
 {
@@ -100,6 +101,8 @@ void Game::InitializeModules()
 	RenderModule * renderModule = new RenderModule();
 	renderModule->Start();
 	modules.push_back(renderModule);
+
+	physics->Start();
 }
 
 
@@ -142,6 +145,23 @@ void Game::Update()
 			
 		}
 	}
+
+	fixedDeltaAccumulator += Time::DeltaTime();
+
+	while (fixedDeltaAccumulator > Time::FixedDeltaTime())
+	{
+		physics->FixedUpdate();
+		for (GameObject* g : gameObjects)
+		{
+			if (g->isActive())
+			{
+				g->FixedUpdate();
+			}
+		}
+		fixedDeltaAccumulator -= Time::FixedDeltaTime();
+	}
+
+	physics->Extrapolate(fixedDeltaAccumulator);
 
 	for (GameObject* g : objectsToDestroy)
 	{

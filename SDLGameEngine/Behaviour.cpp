@@ -26,6 +26,11 @@ void Behaviour::Update()
 	Component::Update();
 }
 
+void Behaviour::FixedUpdate()
+{
+	Component::Update();
+}
+
 
 void Behaviour::Cleanup()
 {

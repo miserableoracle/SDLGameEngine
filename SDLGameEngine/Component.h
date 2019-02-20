@@ -15,6 +15,7 @@ public:
 	virtual void Awake();
 	virtual void Start();
 	virtual void Update();
+	virtual void FixedUpdate();
 	virtual void Cleanup();
 
 	GameObject* gameObject;
@@ -28,8 +29,11 @@ public:
 	GameObject* Instantiate(std::string name = "", const Vector2& position = Vector2(0, 0), const float& angle = 0);
 	GameObject* Instantiate(GameObject* go, const Vector2& position = Vector2(0, 0), const float& angle = 0);
 
+	inline bool isAwake() { return awoken; }
+
 private:
 	bool started = false;
 	void OnUpdate();
+	bool awoken = false;
 };
 

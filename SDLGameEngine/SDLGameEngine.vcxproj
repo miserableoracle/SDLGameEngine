@@ -83,7 +83,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Box_2d\Box2D\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Box_2d\Box2D\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -97,7 +97,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Box_2d\Box2D\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>D:\Box_2d\Box2D\lib;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\lib\x64;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\lib\x64;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -107,7 +113,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Box_2d\Box2D\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Box_2d\Box2D\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -125,16 +131,21 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Box_2d\Box2D\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\include;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Box_2d\Box2D\lib;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_ttf-2.0.14\lib\x64;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2_image-2.0.4\lib\x64;C:\Users\abhis\OneDrive\Documents\GitHub\SDLGameEngine\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Align.cpp" />
     <ClCompile Include="Arrive.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraFollow.cpp" />
@@ -150,6 +161,7 @@
     <ClCompile Include="KinematicDemo.cpp" />
     <ClCompile Include="KinematicSeek.cpp" />
     <ClCompile Include="KinematicSteeringBehaviour.cpp" />
+    <ClCompile Include="LayerdStorage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="MoveInCircle.cpp" />
@@ -160,6 +172,7 @@
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RenderModule.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Seek.cpp" />
@@ -181,6 +194,7 @@
     <ClInclude Include="Align.h" />
     <ClInclude Include="Arrive.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraFollow.h" />
@@ -196,6 +210,7 @@
     <ClInclude Include="KinematicDemo.h" />
     <ClInclude Include="KinematicSeek.h" />
     <ClInclude Include="KinematicSteeringBehaviour.h" />
+    <ClInclude Include="LayerdStorage.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="MoveInCircle.h" />
     <ClInclude Include="PathFollowing.h" />
@@ -205,6 +220,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RenderModule.h" />
+    <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Seek.h" />

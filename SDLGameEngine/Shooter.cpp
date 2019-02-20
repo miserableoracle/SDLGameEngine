@@ -18,6 +18,8 @@
 #include "SpriteRenderer.h"
 #include "Scene1.h"
 #include "PlayerControls.h"
+#include "Rigidbody.h"
+#include "BoxCollider.h"
 
 Shooter::Shooter()
 {
@@ -74,6 +76,13 @@ GameObject* Shooter::EnemyPrefab()
 	updateTarget->targetObject = tgt;
 
 	go->transform->SetRelativeScale(Vector2(0.2f, 0.2f));
+	
+	go->AddComponent(new Rigidbody());
+
+	BoxCollider* col = new BoxCollider();
+	go->AddComponent(col);
+
+	col->SetDimension(Vector2(50, 50));
 
 	return go;
 }

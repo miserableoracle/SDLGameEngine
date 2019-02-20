@@ -15,7 +15,7 @@ CameraFollow::~CameraFollow()
 
 void CameraFollow::Update()
 {
-	Camera::x = ceil(gameObject->transform->GetAbsolutePosition().x) - floor(Camera::width * 0.5f);
-	Camera::y = ceil(gameObject->transform->GetAbsolutePosition().y) - floor(Camera::height * 0.5f);
+	Camera::x = (gameObject->transform->GetAbsolutePosition().x) - (Camera::width * 0.5f);
+	Camera::y = (gameObject->transform->GetAbsolutePosition().y) - (Camera::height * 0.5f);
 
 }
