@@ -56,6 +56,12 @@
     <Filter Include="Engine\Header Files\Physics">
       <UniqueIdentifier>{935d3661-5c5a-4658-bcac-59d2000e2ef9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SteeringBehaviours">
+      <UniqueIdentifier>{3c46557b-58f6-4e8f-92df-ab1b6cb64fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shooter">
+      <UniqueIdentifier>{425c115b-a6e6-4b7f-b920-e63b558b8aaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -147,6 +153,63 @@
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>Engine\Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Align.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Arrive.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleAvoidance.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFollowing.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringAgent.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviour.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraFollow.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Flee.cpp">
+      <Filter>SteeringBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveInCircle.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerControls.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene1.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Shoot.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Shooter.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateTarget.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateVectorTarget.cpp">
+      <Filter>Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Pursue.cpp">
+      <Filter>SteeringBehaviours</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +308,63 @@
     </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>Engine\Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Align.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrive.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="ObstacleAvoidance.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFollowing.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringAgent.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviour.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraFollow.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Flee.h">
+      <Filter>SteeringBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveInCircle.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControls.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene1.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shoot.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shooter.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateTarget.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateVectorTarget.h">
+      <Filter>Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Pursue.h">
+      <Filter>SteeringBehaviours</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
