@@ -150,6 +150,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ContactListener.cpp" />
+    <ClCompile Include="EngineDemoGame.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RaycastHit.cpp" />
     <ClCompile Include="SimpleEvent.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ContactListener.h" />
+    <ClInclude Include="EngineDemoGame.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="Game.h" />
