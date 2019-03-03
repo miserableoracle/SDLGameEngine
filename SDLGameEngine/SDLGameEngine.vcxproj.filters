@@ -56,9 +56,6 @@
     <Filter Include="Engine\Header Files\Physics">
       <UniqueIdentifier>{935d3661-5c5a-4658-bcac-59d2000e2ef9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineDemo">
-      <UniqueIdentifier>{17dd542f-33c4-48b5-956a-4d7061b7cadc}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,9 +147,6 @@
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
       <Filter>Engine\Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineDemoGame.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +246,5 @@
     <ClInclude Include="Vector2.h">
       <Filter>Engine\Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="EngineDemoGame.h" />
   </ItemGroup>
 </Project>
