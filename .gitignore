@@ -345,3 +345,4 @@ healthchecksdb
 MigrationBackup/
 *.db
 *.filters
+*.filters
