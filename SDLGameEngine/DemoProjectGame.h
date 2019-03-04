@@ -8,5 +8,6 @@ public:
 	~DemoProjectGame();
 	void Awake();
 	void Setup();
+	void EnemyPrefab(GameObject* enemy);
 };
 

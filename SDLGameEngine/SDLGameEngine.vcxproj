@@ -151,6 +151,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="DemoProjectGame.cpp" />
+    <ClCompile Include="PlayerControls.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RaycastHit.cpp" />
     <ClCompile Include="Scene1.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="LayerdStorage.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="PlayerControls.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="RaycastHit.h" />
     <ClInclude Include="Rect.h" />

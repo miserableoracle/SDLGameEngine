@@ -188,8 +188,8 @@ void Transform::SetRelativeScale(const Vector2& _scale)
 	else
 	{
 		const Vector2& parentScale = parent->GetAbsoluteScale();
-		scale.x = scale.x * parentScale.x;
-		scale.y = scale.y * parentScale.y;
+		scale.x = relativeScale.x * parentScale.x;
+		scale.y = relativeScale.y * parentScale.y;
 	}
 	for (Transform* t : children)
 	{

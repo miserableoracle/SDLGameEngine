@@ -57,7 +57,7 @@
       <UniqueIdentifier>{935d3661-5c5a-4658-bcac-59d2000e2ef9}</UniqueIdentifier>
     </Filter>
     <Filter Include="DemoProject">
-      <UniqueIdentifier>{41e4a0a0-3707-4ac2-bbdc-ab203affd91c}</UniqueIdentifier>
+      <UniqueIdentifier>{6f472484-57d8-485f-87f1-c0f82a8adb0a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +155,9 @@
       <Filter>DemoProject</Filter>
     </ClCompile>
     <ClCompile Include="Scene1.cpp">
+      <Filter>DemoProject</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerControls.cpp">
       <Filter>DemoProject</Filter>
     </ClCompile>
   </ItemGroup>
@@ -259,6 +262,9 @@
       <Filter>DemoProject</Filter>
     </ClInclude>
     <ClInclude Include="Scene1.h">
+      <Filter>DemoProject</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControls.h">
       <Filter>DemoProject</Filter>
     </ClInclude>
   </ItemGroup>
