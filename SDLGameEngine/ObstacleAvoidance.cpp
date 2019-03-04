@@ -4,6 +4,7 @@
 #include "RaycastHit.h"
 #include "Collider.h"
 #include "Rect.h"
+#include "Arrive.h"
 
 ObstacleAvoidance::ObstacleAvoidance()
 {
@@ -24,7 +25,13 @@ void ObstacleAvoidance::Start()
 
 void ObstacleAvoidance::Update()
 {
-	RaycastHit hit = game->physics->Raycast(gameObject->transform->GetAbsolutePosition(), -gameObject->transform->Up(), lookAhead, avoidLayer);
+	Vector2 direction = -gameObject->transform->Up();
+	if (gameObject->GetComponent<Arrive>())
+	{
+		direction = gameObject->GetComponent<Arrive>()->target->GetAbsolutePosition() - gameObject->transform->GetAbsolutePosition();
+		direction = direction.Normalize();
+	}
+	RaycastHit hit = game->physics->Raycast(gameObject->transform->GetAbsolutePosition(), direction, lookAhead, avoidLayer);
 	if (hit.collider != nullptr)
 	{
 		Vector2 toVec = gameObject->transform->GetAbsolutePosition() - hit.point;
